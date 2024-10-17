@@ -14,7 +14,26 @@ string[] names = {
 // After last element should be ".".
 void PrintGroups(string[] t, int perLine)
 {
+    string Line = "";
+    int lineElement = 0;
+    for (int i = 0; i < t.Length; i++)
+    {
+        if (i < t.Length - 1)
+        {
+            Line += t[i] + ", ";
+            lineElement++;
+        }
+        else
+            Console.WriteLine(Line + t[i] + ".");
+        
+        if(lineElement == perLine)
+        {
+            Console.WriteLine(Line);
+            lineElement = 0;
+            Line = "";
+        }
 
+    }
     // Write required code.
 
 }
@@ -29,6 +48,37 @@ void PrintColumns(string[] t, int perLine, int width)
 {
 
     // Write required code.
+    int linePosition = 0;
+    string line ="";
+    for( int x=0; x < t.Length;x++)
+    {
+        string lineElement = t[x];
+        if (lineElement.Length > width)
+            lineElement = lineElement[0..width];
+        else if (lineElement.Length < width)
+            for (int g = lineElement.Length; g < width; g++)
+                lineElement += ' ';
+        
+        if (linePosition == perLine-1)
+        {
+            line += "| " + lineElement;
+            Console.WriteLine(line);
+            line = "";
+            linePosition = 0;
+        }
+        else
+        {
+            if(linePosition == 0)
+            {
+                line += lineElement;
+            }
+            else
+            {
+                line += "| " + lineElement;
+            }
+            linePosition++;
+        }
+    }
 
 }
 
@@ -113,4 +163,5 @@ Mickey Mou| Minnie Mou| Donald Duc| Goofy     | Pluto     | Daisy Duck| Simba   
 Timon     | Pumbaa    | Mufasa    | Ariel     | Flounder  | Sebastian | Ursula    | Belle
 Beast     | Gaston    | Cinderella| Prince Cha| Aurora    | Maleficent| Rapunzel  | Flynn Ride
 Elsa      | Anna      | Olaf      | Moana     | Maui      | Hercules  |
+
 */
